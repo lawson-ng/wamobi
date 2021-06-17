@@ -12,7 +12,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "rn_redux_toolkit_boilerplate";
+    return "wamo";
   }
 
   @Override
