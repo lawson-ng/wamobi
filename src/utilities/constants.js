@@ -1,8 +1,14 @@
+import {Dimensions} from 'react-native'
+
+export const screen = Dimensions.get('screen')
+export const window = Dimensions.get('window')
+
 export const ROUTES = {
 	HOME: {
 		name: 'home',
 		options: {
 			title: 'Home',
+			headerShown: false,
 		},
 	},
 	SIGNIN: {

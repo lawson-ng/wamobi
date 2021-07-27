@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,5 +51,42 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>Fontisto.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>BarlowCondensed-Black.ttf</string>
+		<string>BarlowCondensed-BlackItalic.ttf</string>
+		<string>BarlowCondensed-Bold.ttf</string>
+		<string>BarlowCondensed-BoldItalic.ttf</string>
+		<string>BarlowCondensed-ExtraBold.ttf</string>
+		<string>BarlowCondensed-ExtraBoldItalic.ttf</string>
+		<string>BarlowCondensed-ExtraLight.ttf</string>
+		<string>BarlowCondensed-ExtraLightItalic.ttf</string>
+		<string>BarlowCondensed-Italic.ttf</string>
+		<string>BarlowCondensed-Light.ttf</string>
+		<string>BarlowCondensed-LightItalic.ttf</string>
+		<string>BarlowCondensed-Medium.ttf</string>
+		<string>BarlowCondensed-MediumItalic.ttf</string>
+		<string>BarlowCondensed-Regular.ttf</string>
+		<string>BarlowCondensed-SemiBold.ttf</string>
+		<string>BarlowCondensed-SemiBoldItalic.ttf</string>
+		<string>BarlowCondensed-Thin.ttf</string>
+		<string>BarlowCondensed-ThinItalic.ttf</string>
+	</array>
 </dict>
 </plist>

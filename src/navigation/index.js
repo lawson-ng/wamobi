@@ -1,13 +1,10 @@
 import {NavigationContainer} from '@react-navigation/native'
 import React from 'react'
-import {enableScreens} from 'react-native-screens'
-import {HomeStack, AuthStack} from './stack'
-// Optimize memory usage and performance
-enableScreens()
+import {HomeStack} from './stack'
 
-const Navigation = ({isLogged}) => (
+const Navigation = () => (
 	<NavigationContainer>
-		{isLogged ? <HomeStack /> : <AuthStack />}
+		<HomeStack />
 	</NavigationContainer>
 )
 
