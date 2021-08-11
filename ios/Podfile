@@ -13,10 +13,6 @@ target 'wamobi' do
   )
 
 
-  pod 'RNCPicker', :path => '../node_modules/@react-native-picker/picker'
-
-  pod 'RNFS', :path => '../node_modules/react-native-fs'
-
   target 'wamobiTests' do
     inherit! :complete
     # Pods for testing

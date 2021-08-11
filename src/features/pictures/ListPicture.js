@@ -1,39 +1,35 @@
+import Loader from 'components/Loader'
 import React, {useEffect, useState} from 'react'
-import {
-	View,
-	Text,
-	FlatList,
-	Modal,
-	Touchable,
-	TouchableOpacity,
-	Image,
-	SafeAreaView,
-	StatusBar,
-} from 'react-native'
+import {FlatList, SafeAreaView, StatusBar} from 'react-native'
 import {useDispatch, useSelector} from 'react-redux'
-import {screen} from 'utilities/constants'
-import ModalPicture from './ModalPicture'
 import Picture from './Picture'
-import {fetchPictures, selectAll} from './PicturesSlice'
+import {
+	fetchPictures,
+	selectAll,
+	selectIsLoading,
+	selectPage,
+} from './PicturesSlice'
 
 import {listPictureStyle as styles} from './styles'
 const ListPicture = () => {
 	const dispatch = useDispatch()
 	const photos = useSelector(selectAll)
-	const [selectedUrl, setSelectedUrl] = useState(null)
-	const handleFetchPictures = () => {
-		console.log('List Picture')
-		dispatch(fetchPictures())
+	const page = useSelector(selectPage)
+
+	const isLoading = useSelector(selectIsLoading)
+
+	const handleFetchPictures = (nextPage = page) => {
+		dispatch(fetchPictures({nextPage}))
 	}
 
-	// useEffect(() => handleFetchPictures(), [])
+	useEffect(() => handleFetchPictures(), [])
+
+	if (isLoading && !photos.length) {
+		return <Loader />
+	}
 
 	const renderItem = (item) => (
-		<Picture
-			onPress={() => setSelectedUrl(item.src.large)}
-			url={item.src.large2x}
-			photographerName={item.photographer}
-		/>
+		<Picture url={item?.src?.large2x} photographerName={item?.photographer} />
 	)
 
 	return (
@@ -43,9 +39,14 @@ const ListPicture = () => {
 				data={photos}
 				renderItem={({item}) => renderItem(item)}
 				keyExtractor={(item) => item.id}
-				snapToAlignment={'start'}
-				snapToInterval={screen.height}
-				decelerationRate={'fast'}
+				// snapToAlignment={'start'}
+				// snapToInterval={screen.height}
+				// decelerationRate={'fast'}
+				numColumns={2}
+				onRefresh={handleFetchPictures}
+				refreshing={isLoading}
+				onEndReachedThreshold={0.8}
+				onEndReached={() => handleFetchPictures(page + 1)}
 			/>
 		</SafeAreaView>
 	)

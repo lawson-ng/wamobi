@@ -3,7 +3,6 @@ import picturesSlice from 'features/pictures/PicturesSlice'
 import Reactotron from './ReactotronConfig'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
-	persistStore,
 	persistReducer,
 	FLUSH,
 	REHYDRATE,
