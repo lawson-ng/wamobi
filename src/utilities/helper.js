@@ -1,6 +1,9 @@
 import CameraRoll from '@react-native-community/cameraroll'
 import RNFetchBlob from 'rn-fetch-blob'
 
+import {Client} from 'rollbar-react-native'
+export const rollbar = new Client('6157529f0206498b862be5e3b08f6b2c')
+
 export const RESULT_SAVE_IMAGE = {
 	SUCCESS: 200,
 }
