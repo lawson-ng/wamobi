@@ -1,28 +1,24 @@
 import Loader from 'components/Loader'
 import React, {useEffect, useState} from 'react'
-import {FlatList, SafeAreaView, StatusBar} from 'react-native'
-import {useDispatch, useSelector} from 'react-redux'
-import Picture from './Picture'
-import {
-	fetchPictures,
-	selectAll,
-	selectIsLoading,
-	selectPage,
-} from './PicturesSlice'
+import {FlatList, SafeAreaView} from 'react-native'
+import {useSelector} from 'react-redux'
+import Picture from './Item'
+import {fetchPictures, searchPictures, selectAll} from './PicturesSlice'
+import {SearchBar} from 'react-native-elements'
 
 import {listPictureStyle as styles} from './styles'
+import {useDebounceSearch} from 'utilities/helper'
+import PictureController from './PictureController'
+
 const ListPicture = () => {
-	const dispatch = useDispatch()
+	const data = PictureController.data
+	console.tron(data)
 	const photos = useSelector(selectAll)
-	const page = useSelector(selectPage)
+	const isLoading = false
 
-	const isLoading = useSelector(selectIsLoading)
+	// const useSearching = () => useDebounceSearch((value) => dispatch(searchPictures(value)))
 
-	const handleFetchPictures = (nextPage = page) => {
-		dispatch(fetchPictures({nextPage}))
-	}
-
-	useEffect(() => handleFetchPictures(), [])
+	// const {query, setQuery} = useSearching()
 
 	if (isLoading && !photos.length) {
 		return <Loader />
@@ -34,19 +30,22 @@ const ListPicture = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<StatusBar hidden />
+			<SearchBar
+				placeholder='Type Here...'
+				// onChangeText={setQuery}
+				round
+				// value={query}
+				containerStyle={{backgroundColor: 'black'}}
+			/>
 			<FlatList
 				data={photos}
 				renderItem={({item}) => renderItem(item)}
 				keyExtractor={(item) => item.id}
-				// snapToAlignment={'start'}
-				// snapToInterval={screen.height}
-				// decelerationRate={'fast'}
-				numColumns={2}
-				onRefresh={handleFetchPictures}
+				numColumns={3}
+				// onRefresh={handleFetchPictures}
 				refreshing={isLoading}
-				onEndReachedThreshold={0.8}
-				onEndReached={() => handleFetchPictures(page + 1)}
+				onEndReachedThreshold={0.95}
+				// onEndReached={() => handleFetchPictures(page + 1)}
 			/>
 		</SafeAreaView>
 	)
