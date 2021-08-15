@@ -45,3 +45,8 @@ yarn android
     ├── screens
     └── utilities
 ````
+## Tech Stack
+- React Native
+- Redux-Toolkit
+- App Center
+- Rollbar
