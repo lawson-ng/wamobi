@@ -15,6 +15,13 @@ enableScreens()
 
 let persistor = persistStore(store)
 
+let codePushOptions = {
+	updateDialog: {
+		appendReleaseDescription: true,
+	},
+	installMode: CodePush.InstallMode.IMMEDIATE,
+}
+
 const Main = () => {
 	return (
 		<Provider store={store}>
@@ -25,4 +32,4 @@ const Main = () => {
 	)
 }
 
-AppRegistry.registerComponent(appName, () => CodePush(Main))
+AppRegistry.registerComponent(appName, () => CodePush(codePushOptions)(Main))
