@@ -8,11 +8,19 @@ import App from 'app/App'
 import {enableScreens} from 'react-native-screens'
 import {Provider} from 'react-redux'
 import {persistStore} from 'redux-persist'
+import CodePush from 'react-native-code-push'
 
 // Optimize memory usage and performance
 enableScreens()
 
 let persistor = persistStore(store)
+
+let codePushOptions = {
+	updateDialog: {
+		appendReleaseDescription: true,
+	},
+	installMode: CodePush.InstallMode.IMMEDIATE,
+}
 
 const Main = () => {
 	return (
@@ -24,4 +32,4 @@ const Main = () => {
 	)
 }
 
-AppRegistry.registerComponent(appName, () => Main)
+AppRegistry.registerComponent(appName, () => CodePush(codePushOptions)(Main))

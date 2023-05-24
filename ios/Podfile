@@ -13,6 +13,8 @@ target 'wamobi' do
   )
 
 
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
+
   target 'wamobiTests' do
     inherit! :complete
     # Pods for testing

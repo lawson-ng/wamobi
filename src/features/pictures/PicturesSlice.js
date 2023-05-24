@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit'
 import API from 'utilities/api'
 
-const perPage = 20
+const perPage = 30
 
 const pictureAdapter = createEntityAdapter()
 
@@ -19,15 +19,26 @@ export const fetchPictures = createAsyncThunk(
 	'pictures/fetchPictures',
 	async (params = {}) => {
 		const {nextPage = 1} = params
-		console.tron('nextPage', nextPage)
-
-		const response = await API.get('curated', {
+		const response = await API.get('curate2d', {
 			params: {
 				page: nextPage,
 				per_page: perPage,
 			},
 		})
 		return {data: response.photos, page: nextPage}
+	},
+)
+
+export const searchPictures = createAsyncThunk(
+	'pictures/searchPictures',
+	async (query = '') => {
+		const response = await API.get('search', {
+			params: {
+				query,
+			},
+		})
+
+		return {data: response.photos}
 	},
 )
 
@@ -52,6 +63,10 @@ const pictureSlice = createSlice({
 		})
 		builder.addCase(fetchPictures.rejected, (state) => {
 			state.isLoading = false
+		})
+		builder.addCase(searchPictures.fulfilled, (state, action) => {
+			const {data} = action.payload
+			pictureAdapter.setAll(state, data)
 		})
 	},
 })
